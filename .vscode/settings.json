@@ -1,0 +1,15 @@
+{
+	"editor.formatOnSave": true,
+	"editor.insertSpaces": true,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": true,
+	"typescript.tsserver.experimental.enableProjectDiagnostics": true,
+	"files.watcherExclude": {
+		"**/node_modules/**": true,
+		"**/public/**": true,
+		"**/dist/**": true,
+		"**/.git/*/**": true,
+		"**/node_modules/*/**": true,
+		"**/packages/*/**": true
+	}
+}

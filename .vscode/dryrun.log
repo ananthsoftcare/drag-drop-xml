@@ -1,0 +1,11 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make.exe: Entering directory 'd:/gca-networked/gca-fe-main/fe-main'
+echo Getting dependencies using npm
+node skip_integrity_check.js
+npm install
+ 
+touch node_modules
+echo Building storybook
+npm run build-storybook
+make.exe: Leaving directory 'd:/gca-networked/gca-fe-main/fe-main'
+ 
