@@ -5,124 +5,39 @@ import Nestable from "react-nestable";
 const data = [
   {
     id: 1,
-    content: "Getting Started with Redux: An Intro",
-    heading: 1,
-    elemt: "input",
+    tag: "NAVXML",
+    type: 'tag',
+    matchKey: '',
+    defaultValue: '',
     children: [
-      { id: 2, content: "Table of Contents", heading: 2, elemt: "input" }
-    ]
-  },
-  {
-    id: 3,
-    content: "The Core Concepts",
-    heading: 1,
-    elemt: "input",
-    children: [
-      {
-        id: 4,
-        content: "1. Single source of truth",
-        heading: 2,
-        elemt: "input"
-      },
-      {
-        id: 5,
-        content: "2. State is read-only",
-        heading: 2,
-        elemt: "input"
-      },
-      {
-        id: 6,
-        content: "3. Changes are made with pure functions",
-        heading: 2,
-        elemt: "input"
+      { id: 2, tag: "DOCTYPE", type: 'text', matchKey: 'MESSAGETYPE', defaultValue: 'Return Order' },
+      { id: 3, tag: "DOCACTION", type: 'text', matchKey: '', defaultValue: 'Insert' },
+      { id: 4, tag: "SalesHeader", type: 'tag', matchKey: '', defaultValue: '',
+        children: [
+          { id: 5, tag: "EDIPOID", type: 'text', matchKey: '', defaultValue: ''},
+          { id: 6, tag: "DocumentDate", type: 'text', matchKey: 'NETLOGMESSAGE.SENTTIMESTAMP', defaultValue: ''},
+          { id: 7, tag: "SelltoCustomer", type: 'tag', matchKey: '', defaultValue: '',
+            children: [
+              { id: 8, tag: "SelltoCustomerNo", type: 'tag', matchKey: '', defaultValue: 'CU100XXX' }
+            ]
+          },
+          { id: 9, tag: "YourReference", type: 'text', matchKey: 'NETLOGMESSAGE.MESSAGE.HEADER.DATA.ORDERID', defaultValue: ''},
+          { id: 10, tag: "SalesLine", type: 'loop', matchKey: 'NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2', defaultValue: '',
+            children: [
+              { id: 11, tag: "No", type: 'text', matchKey: 'NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]SKU', defaultValue: '' },
+              { id: 12, tag: "SerialLot", type: 'text', matchKey: 'NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]SERIAL', defaultValue: '' },
+              { id: 13, tag: "Variant", type: 'text', matchKey: 'NETLOGMESSAGE.MESSAGE.HEADER.DATA.ORDERTYPE', defaultValue: '' },
+              { id: 14, tag: "SalesLineComments", type: 'tag', matchKey: '', defaultValue: '',
+                children: [
+                  { id: 15, tag: "SalesLineCommentLine", type: 'text', matchKey: 'NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]INVENTORYSTATUS', defaultValue: '' }
+                ]
+              }
+
+            ]
+          },
+        ]
       }
     ]
-  },
-  {
-    id: 7,
-    content: "Best Practices",
-    heading: 1,
-    elemt: "input",
-    children: [
-      { id: 8, content: "State Shape", heading: 2, elemt: "input" },
-      {
-        id: 9,
-        content: "Flat Objects",
-        heading: 3,
-        elemt: "input"
-      },
-      { id: 10, content: "Actions", heading: 2, elemt: "input" },
-      {
-        id: 11,
-        content: "Reducers",
-        heading: 2,
-        elemt: "input"
-      }
-    ]
-  },
-  {
-    id: 12,
-    content: "Testing",
-    heading: 1,
-    elemt: "input",
-    children: [
-      { id: 13, content: "Action creators", heading: 2, elemt: "input" },
-      {
-        id: 14,
-        content: "Reducers",
-        heading: 2,
-        elemt: "input"
-      }
-    ]
-  },
-  {
-    id: 15,
-    content: "Wrapping it up",
-    heading: 1,
-    elemt: "input",
-    children: [
-      { id: 16, content: "Free eBook", heading: 2, elemt: "input" },
-      {
-        id: 17,
-        content: "Learn Node",
-        heading: 2,
-        elemt: "input"
-      },
-      { id: 18, content: "Carly Kubacak", heading: 2, elemt: "input" },
-      {
-        id: 19,
-        content: "Carly Kubacak",
-        heading: 2,
-        elemt: "input"
-      },
-      {
-        id: 20,
-        content:
-          "💖 A side project brought to you from Las Vegas and DC by...",
-        heading: 3,
-        elemt: "input"
-      },
-      {
-        id: 21,
-        content: "Easiest Local Dev Environment",
-        heading: 2,
-        elemt: "input"
-      },
-      {
-        id: 22,
-        content: "Get Started with Vue.js",
-        heading: 2,
-        elemt: "input"
-      },
-      { id: 23, content: "Scotch", heading: 2, elemt: "input" }
-    ]
-  },
-  {
-    id: 24,
-    content: "Get Access",
-    heading: 1,
-    elemt: "input",
-    children: []
   }
 ];
 
@@ -152,7 +67,7 @@ class App extends Component {
           </div>
         ) : (
           <div onDoubleClick={e => this.onStartEdit(e, item)}>
-            {item.content}
+            {item.tag}
           </div>
         )}
       </div>
@@ -172,7 +87,7 @@ class App extends Component {
     this.setState({
       edit: {
         ...this.state.edit,
-        [item.id]: item.content
+        [item.id]: item.tag
       }
     });
   };
@@ -187,7 +102,7 @@ class App extends Component {
       return list.map(item => {
         return {
           ...item,
-          content: id === item.id ? newValue : item.content,
+          content: id === item.id ? newValue : item.tag,
           children: item.children && updatedData(item.children, value)
         };
       });
@@ -203,8 +118,15 @@ class App extends Component {
   };
 
   onOrderChange = (items, item) => {
+    console.log(items,'0000000')
+    console.log(this.state.data, '2222222')
     this.setState({ data: items })
   };
+
+  onOrderConfirmChange = (...props) => {
+    console.log(props, '0-0-0-0')
+    return true;
+  }
 
   render() {
     const { data } = this.state;
@@ -216,6 +138,7 @@ class App extends Component {
             items={data}
             renderItem={this.renderItem}
             onChange={this.onOrderChange}
+            confirmChange={this.onOrderConfirmChange}
           />
         </div>
       </div>

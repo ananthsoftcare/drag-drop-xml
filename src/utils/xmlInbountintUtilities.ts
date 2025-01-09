@@ -1,11 +1,65 @@
 
 import { InbountInt, InbountIntXML } from "../interface/inbountInt";
 import { getInbountDatalevel } from "./common";
+import inbountdata from "../../app/src/formulas/inbount";
+
+function convert(json, loopKey = '') {
+    const output = {};
+
+    json.forEach(item => {
+        const { tag, children, matchKey, defaultValue, type } = item;
+
+        if (!children) {
+			if(matchKey.includes('[~]')) {
+                const matchKeyArr = matchKey.replace('~', loopKey);
+                output[tag] = matchKeyArr || '';
+            } else {
+				output[tag] = matchKey || defaultValue || '';
+			}
+        } else {
+            if(type == 'loop') {
+                output[tag] = [];
+                const loopVal = matchKey.split('.').reduce((o, i) => o[i], inbountdata[0]);
+                if(loopVal.length > 1) {
+                    loopVal.forEach((litem, i) => {
+                        output[tag][i] = convert(children, i);
+                    })
+                }
+            } else {
+                output[tag] = convert(children); // Recursively handle child elements
+            }
+        }
+    });
+
+    return output;
+}
+
+const getArrVal = (tag) => {
+    const res = tag.split('.').reduce((o, i) => {
+        // Check if the current part of the path has an array index
+        const arrayMatch = i.match(/(.*)\[(\d+)\]/);
+        
+        if (arrayMatch) {
+            // If it's an array index, access the array and the correct index
+            const arrayName = arrayMatch[1];  // The part before the array
+            const index = parseInt(arrayMatch[2], 10);  // The index value
+            o = o[arrayName][index];  // Access the array and the item at the given index
+        } else {
+            // If it's not an array, simply access the property
+            o = o[i];
+        }
+    
+        return o;
+    }, inbountdata[0]);
+    return res;
+}
 
 export const processInbountInt = async (data: InbountIntXML) => {
 	const { NETLOGMESSAGE, NETLOGMESSAGE: { MESSAGE : { HEADER : { DATA }}}  } = data;
 	const datalevel = await getInbountDatalevel(DATA?.DATALEVEL2?.DATA2);
 	
+	const output = convert(inbountdata)
+	console.log(output, '+_+_+_+_+_+_+_+_+_')
 	const NAVXML: InbountInt = {
 		"messageid": NETLOGMESSAGE.MESSAGEID,
 		"messagetype": NETLOGMESSAGE.MESSAGETYPE,

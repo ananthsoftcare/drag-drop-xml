@@ -11,13 +11,10 @@ export const processXml = async (filePath: string) => {
 		const xmlFile = fs.readFileSync(`${process.cwd()}${filePath}`, 'utf8');
 		const parser = new XMLParser();
 		const json = parser.parse(xmlFile);
-		const jsontet = parser.parse(xmlFile);
-		
+
 		if (json) {
-			console.log(jsontet.NETLOGMESSAGE?.MESSAGE.HEADER, '------');
 			const messageType = parseInt(MessageType[json.NETLOGMESSAGE?.MESSAGETYPE]);
 			let data;
-			console.log(json.NETLOGMESSAGE?.MESSAGETYPE)
 			switch (messageType) {
 				case MessageType.INBOUNDINT:
 					data = await processInbountInt(json);
