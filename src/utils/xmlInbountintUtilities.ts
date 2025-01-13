@@ -1,32 +1,30 @@
 
+import fs from 'fs';
 import { InbountInt, InbountIntXML } from "../interface/inbountInt";
 import { getInbountDatalevel } from "./common";
-import inbountdata from "../../app/src/formulas/inbount";
 
-function convert(json, loopKey = '') {
+function convert(json, inbountdata, loopKey = '') {
     const output = {};
-
     json.forEach(item => {
         const { tag, children, matchKey, defaultValue, type } = item;
-
         if (!children) {
 			if(matchKey.includes('[~]')) {
                 const matchKeyArr = matchKey.replace('~', loopKey);
-                output[tag] = matchKeyArr || '';
+                output[tag] = getArrVal(matchKeyArr, inbountdata);
             } else {
-				output[tag] = matchKey || defaultValue || '';
+				output[tag] = matchKey ? matchKey.split('.').reduce((o, i) => o[i], inbountdata) : defaultValue;
 			}
         } else {
             if(type == 'loop') {
                 output[tag] = [];
-                const loopVal = matchKey.split('.').reduce((o, i) => o[i], inbountdata[0]);
+                const loopVal = matchKey.split('.').reduce((o, i) => o[i], inbountdata);
                 if(loopVal.length > 1) {
                     loopVal.forEach((litem, i) => {
-                        output[tag][i] = convert(children, i);
+                        output[tag][i] = convert(children, inbountdata, i);
                     })
                 }
             } else {
-                output[tag] = convert(children); // Recursively handle child elements
+                output[tag] = convert(children, inbountdata, loopKey); // Recursively handle child elements
             }
         }
     });
@@ -34,7 +32,7 @@ function convert(json, loopKey = '') {
     return output;
 }
 
-const getArrVal = (tag) => {
+const getArrVal = (tag, inbountdata) => {
     const res = tag.split('.').reduce((o, i) => {
         // Check if the current part of the path has an array index
         const arrayMatch = i.match(/(.*)\[(\d+)\]/);
@@ -50,16 +48,17 @@ const getArrVal = (tag) => {
         }
     
         return o;
-    }, inbountdata[0]);
+    }, inbountdata);
     return res;
 }
 
 export const processInbountInt = async (data: InbountIntXML) => {
 	const { NETLOGMESSAGE, NETLOGMESSAGE: { MESSAGE : { HEADER : { DATA }}}  } = data;
 	const datalevel = await getInbountDatalevel(DATA?.DATALEVEL2?.DATA2);
-	
-	const output = convert(inbountdata)
-	console.log(output, '+_+_+_+_+_+_+_+_+_')
+	const inbountFiledata = fs.readFileSync(`${process.cwd()}/app/src/formulas/inbount.json`, 'utf-8');
+	const inbountdata = JSON.parse(inbountFiledata);
+	//const output = convert(inbountdata, data);
+
 	const NAVXML: InbountInt = {
 		"messageid": NETLOGMESSAGE.MESSAGEID,
 		"messagetype": NETLOGMESSAGE.MESSAGETYPE,

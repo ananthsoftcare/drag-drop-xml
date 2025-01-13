@@ -18,8 +18,8 @@ export const processXml = async (filePath: string) => {
 			switch (messageType) {
 				case MessageType.INBOUNDINT:
 					data = await processInbountInt(json);
-					// store to database
-
+					// store to database					
+					createInboudXML(data, filePath);
 					break;
 				case MessageType.OUTBOUNDINT:
 					data = await processOutbountInt(json);
@@ -31,7 +31,6 @@ export const processXml = async (filePath: string) => {
 				default:
 					break;
 			}
-			createInboudXML(data, filePath);
 		}
 
 	} catch (error) {
