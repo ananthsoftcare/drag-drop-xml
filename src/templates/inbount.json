@@ -10,9 +10,10 @@
         "id": 0,
         "tag": "DOCTYPE",
         "type": "text",
-        "matchKey": "NETLOGMESSAGE.MESSAGETYPE",
+        "matchKey": "",
         "defaultValue": "Return Order",
-        "children": []
+        "children": [],
+        "secondaryMatchKey": ""
       },
       {
         "id": 1,
@@ -89,9 +90,10 @@
             "id": 9,
             "tag": "ExternalDocumentNo",
             "type": "text",
-            "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ORDERID",
+            "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.REFERENCEORD",
             "defaultValue": "",
-            "children": []
+            "children": [],
+            "secondaryMatchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ORDERID"
           },
           {
             "id": 10,
@@ -660,7 +662,7 @@
             "id": 98,
             "tag": "SalesLine",
             "type": "loop",
-            "matchKey": "",
+            "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2",
             "defaultValue": "",
             "children": [
               {
@@ -683,25 +685,28 @@
                 "id": 82,
                 "tag": "No",
                 "type": "text",
-                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]SKU",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].SKU",
                 "defaultValue": "",
-                "children": []
+                "children": [],
+                "secondaryMatchKey": ""
               },
               {
                 "id": 83,
                 "tag": "Variant",
                 "type": "text",
                 "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ORDERTYPE",
-                "defaultValue": "",
-                "children": []
+                "defaultValue": "REPL=REF,CUSTRETURN=DEF",
+                "children": [],
+                "secondaryMatchKey": ""
               },
               {
                 "id": 84,
                 "tag": "SerialLot",
                 "type": "text",
-                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]SERIAL",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].SERIAL",
                 "defaultValue": "",
-                "children": []
+                "children": [],
+                "secondaryMatchKey": ""
               },
               {
                 "id": 85,
@@ -731,9 +736,10 @@
                 "id": 88,
                 "tag": "Quantity",
                 "type": "text",
-                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2.[~].QTYORDERED",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].QTYORDERED",
                 "defaultValue": "",
-                "children": []
+                "children": [],
+                "secondaryMatchKey": ""
               },
               {
                 "id": 89,
@@ -802,13 +808,15 @@
                     "id": 96,
                     "tag": "SalesLineCommentLine",
                     "type": "text",
-                    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]INVENTORYSTATUS",
+                    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].INVENTORYSTATUS",
                     "defaultValue": "",
-                    "children": []
+                    "children": [],
+                    "secondaryMatchKey": ""
                   }
                 ]
               }
-            ]
+            ],
+            "secondaryMatchKey": ""
           }
         ]
       }

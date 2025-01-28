@@ -1,5 +1,6 @@
 
 import fs from 'fs';
+import * as path from "path";
 import { InbountInt, InbountIntXML } from "../interface/inbountInt";
 import { getInbountDatalevel } from "./common";
 
@@ -7,18 +8,18 @@ function convert(json, inbountdata, loopKey = '') {
     const output = {};
     json.forEach(item => {
         const { tag, children, matchKey, defaultValue, type } = item;
-        if (!children) {
+        if (!children || children.length === 0) {
 			if(matchKey.includes('[~]')) {
                 const matchKeyArr = matchKey.replace('~', loopKey);
                 output[tag] = getArrVal(matchKeyArr, inbountdata);
             } else {
-				output[tag] = matchKey ? matchKey.split('.').reduce((o, i) => o[i], inbountdata) : defaultValue;
+				output[tag] = matchKey ? getMatchingValue(item, inbountdata) : defaultValue;
 			}
         } else {
             if(type == 'loop') {
                 output[tag] = [];
                 const loopVal = matchKey.split('.').reduce((o, i) => o[i], inbountdata);
-                if(loopVal.length > 1) {
+                if(loopVal?.length > 1) {
                     loopVal.forEach((litem, i) => {
                         output[tag][i] = convert(children, inbountdata, i);
                     })
@@ -33,17 +34,26 @@ function convert(json, inbountdata, loopKey = '') {
 }
 
 
-const getDefaultValue = (val: string) => {
+const getMatchingValue = (item, inbountdata) => {
 	const regex = /[=,]/;
-	if(regex.test(val)){
-		const commaSeparated = val.split(',');
-
+	const { secondaryMatchKey, matchKey, defaultValue } = item;
+	let matchKeyVal = matchKey.split('.').reduce((o, i) => o[i], inbountdata);
+	if(regex.test(defaultValue)){
+		const commaSeparated = defaultValue.split(',');
+		let matchVal = '';
 		const result = commaSeparated.map(item => {
 			const [key, value] = item.split('=');
+			if(key?.toLowerCase() === matchKeyVal?.toLowerCase()) {
+				matchVal = value
+			}
 			return { key, value };
 		});
+		return matchVal;
+	} else if(secondaryMatchKey && !matchKeyVal) {
+		matchKeyVal = secondaryMatchKey.split('.').reduce((o, i) => o[i], inbountdata);
 	}
-	return val
+
+	return matchKeyVal
 }
 
 const getArrVal = (tag, inbountdata) => {
@@ -56,7 +66,7 @@ const getArrVal = (tag, inbountdata) => {
             const arrayName = arrayMatch[1];  // The part before the array
             const index = parseInt(arrayMatch[2], 10);  // The index value
             o = o[arrayName][index];  // Access the array and the item at the given index
-        } else {
+        } else {			
             // If it's not an array, simply access the property
             o = o[i];
         }
@@ -69,10 +79,11 @@ const getArrVal = (tag, inbountdata) => {
 export const processInbountInt = async (data: InbountIntXML) => {
 	const { NETLOGMESSAGE, NETLOGMESSAGE: { MESSAGE : { HEADER : { DATA }}}  } = data;
 	const datalevel = await getInbountDatalevel(DATA?.DATALEVEL2?.DATA2);
-	const inbountFiledata = fs.readFileSync(`${process.cwd()}/app/src/formulas/inbount.json`, 'utf-8');
+	const jsonPath = path.join(__dirname, '../templates/inbount.json');
+	const inbountFiledata = fs.readFileSync(jsonPath, 'utf-8');
 	const inbountdata = JSON.parse(inbountFiledata);
-	//const output = convert(inbountdata, data);
-
+	const output = convert(inbountdata, data);
+return output;
 	const NAVXML: InbountInt = {
 		"messageid": NETLOGMESSAGE.MESSAGEID,
 		"messagetype": NETLOGMESSAGE.MESSAGETYPE,
