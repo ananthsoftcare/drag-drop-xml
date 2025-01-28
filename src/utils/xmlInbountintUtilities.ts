@@ -32,6 +32,20 @@ function convert(json, inbountdata, loopKey = '') {
     return output;
 }
 
+
+const getDefaultValue = (val: string) => {
+	const regex = /[=,]/;
+	if(regex.test(val)){
+		const commaSeparated = val.split(',');
+
+		const result = commaSeparated.map(item => {
+			const [key, value] = item.split('=');
+			return { key, value };
+		});
+	}
+	return val
+}
+
 const getArrVal = (tag, inbountdata) => {
     const res = tag.split('.').reduce((o, i) => {
         // Check if the current part of the path has an array index

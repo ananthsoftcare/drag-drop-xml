@@ -1,0 +1,817 @@
+[
+  {
+    "id": 100,
+    "tag": "NAVXML",
+    "type": "tag",
+    "matchKey": "",
+    "defaultValue": "",
+    "children": [
+      {
+        "id": 0,
+        "tag": "DOCTYPE",
+        "type": "text",
+        "matchKey": "NETLOGMESSAGE.MESSAGETYPE",
+        "defaultValue": "Return Order",
+        "children": []
+      },
+      {
+        "id": 1,
+        "tag": "DOCACTION",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": "Insert",
+        "children": []
+      },
+      {
+        "id": 99,
+        "tag": "SalesHeader",
+        "type": "tag",
+        "matchKey": "",
+        "defaultValue": "",
+        "children": [
+          {
+            "id": 2,
+            "tag": "EDIPOID",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 3,
+            "tag": "EDIBatchID",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 4,
+            "tag": "PostingDate",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 5,
+            "tag": "OrderDate",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 6,
+            "tag": "DocumentDate",
+            "type": "text",
+            "matchKey": "NETLOGMESSAGE.SENTTIMESTAMP",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 7,
+            "tag": "RequestedDeliveryDate",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 8,
+            "tag": "PromisedDeliveryDate",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 9,
+            "tag": "ExternalDocumentNo",
+            "type": "text",
+            "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ORDERID",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 10,
+            "tag": "SalespersonCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 11,
+            "tag": "CampaignNo",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 12,
+            "tag": "ResponsibilityCenter",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 13,
+            "tag": "ShortcutDimension1Code",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 14,
+            "tag": "ShortcutDimension2Code",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 15,
+            "tag": "PaymentTermsCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 16,
+            "tag": "DueDate",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 17,
+            "tag": "PaymentDiscount",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 18,
+            "tag": "PmtDiscountDate",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 19,
+            "tag": "PaymentMethodCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 20,
+            "tag": "LocationCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 21,
+            "tag": "ShipmentMethodCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "RMA",
+            "children": []
+          },
+          {
+            "id": 22,
+            "tag": "ShippingAgentCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 23,
+            "tag": "ShippingAgentServiceCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 24,
+            "tag": "PackageTrackingNo",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 25,
+            "tag": "ShipmentDate",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 26,
+            "tag": "YourReference",
+            "type": "text",
+            "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ORDERID",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 27,
+            "tag": "CustomerPostingGroup",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 28,
+            "tag": "CurrencyCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 29,
+            "tag": "CurrencyFactor",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 30,
+            "tag": "CustomerPriceGroup",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 31,
+            "tag": "PricesIncludingVAT",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 32,
+            "tag": "InvoiceDiscCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 33,
+            "tag": "CustomerDiscGroup",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 34,
+            "tag": "OnHold",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 35,
+            "tag": "VATRegistrationNo",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 36,
+            "tag": "CombineShipments",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 37,
+            "tag": "ReasonCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 38,
+            "tag": "TransportMethod",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 39,
+            "tag": "TaxAreaCode",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 40,
+            "tag": "CustomerOrderNo",
+            "type": "text",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": []
+          },
+          {
+            "id": 53,
+            "tag": "SelltoCustomer",
+            "type": "tag",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": [
+              {
+                "id": 41,
+                "tag": "SelltoCustomerNo",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "CU101682",
+                "children": []
+              },
+              {
+                "id": 42,
+                "tag": "SelltoCustomerName",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 43,
+                "tag": "SelltoCustomerName2",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 44,
+                "tag": "SelltoAddress",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 45,
+                "tag": "SelltoAddress2",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 46,
+                "tag": "SelltoCity",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 47,
+                "tag": "SelltoContact",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 48,
+                "tag": "SelltoCounty",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 49,
+                "tag": "SelltoPostCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 50,
+                "tag": "SelltoCountryRegionCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 51,
+                "tag": "SelltoContactNo",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 52,
+                "tag": "SelltoICPartnerCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 66,
+            "tag": "BilltoCustomer",
+            "type": "tag",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": [
+              {
+                "id": 54,
+                "tag": "BilltoCustomerNo",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "CU101678",
+                "children": []
+              },
+              {
+                "id": 55,
+                "tag": "BilltoName",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 56,
+                "tag": "BilltoName2",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 57,
+                "tag": "BilltoAddress",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 58,
+                "tag": "BilltoAddress2",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 59,
+                "tag": "BilltoCity",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 60,
+                "tag": "BilltoContact",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 61,
+                "tag": "BilltoCounty",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 62,
+                "tag": "BilltoPostCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 63,
+                "tag": "BilltoCountryRegionCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 64,
+                "tag": "BilltoContactNo",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 65,
+                "tag": "BilltoICPartnerCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 79,
+            "tag": "Shipto",
+            "type": "tag",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": [
+              {
+                "id": 67,
+                "tag": "ShiptoCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 68,
+                "tag": "ShiptoName",
+                "type": "text",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.COMPANYNAME",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 69,
+                "tag": "ShiptoName2",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 70,
+                "tag": "ShiptoAddress",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 71,
+                "tag": "ShiptoAddress2",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 72,
+                "tag": "ShiptoAddress3",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 73,
+                "tag": "ShiptoAddress4",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 74,
+                "tag": "ShiptoCity",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 75,
+                "tag": "ShiptoContact",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 76,
+                "tag": "ShiptoCounty",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 77,
+                "tag": "ShiptoPostCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 78,
+                "tag": "ShiptoCountryRegionCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "US",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 98,
+            "tag": "SalesLine",
+            "type": "loop",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": [
+              {
+                "id": 80,
+                "tag": "EDILineNo",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 81,
+                "tag": "Type",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "Item",
+                "children": []
+              },
+              {
+                "id": 82,
+                "tag": "No",
+                "type": "text",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]SKU",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 83,
+                "tag": "Variant",
+                "type": "text",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ORDERTYPE",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 84,
+                "tag": "SerialLot",
+                "type": "text",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]SERIAL",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 85,
+                "tag": "Description",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 86,
+                "tag": "Description2",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 87,
+                "tag": "LocationCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 88,
+                "tag": "Quantity",
+                "type": "text",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2.[~].QTYORDERED",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 89,
+                "tag": "UnitofMeasureCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "EA",
+                "children": []
+              },
+              {
+                "id": 90,
+                "tag": "UnitPrice",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 91,
+                "tag": "TaxGroupCode",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 92,
+                "tag": "LineAmount",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 93,
+                "tag": "AmountIncludingVAT",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 94,
+                "tag": "LineDiscount",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 95,
+                "tag": "LineDiscountAmount",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": []
+              },
+              {
+                "id": 97,
+                "tag": "SalesLineComments",
+                "type": "tag",
+                "matchKey": "",
+                "defaultValue": "",
+                "children": [
+                  {
+                    "id": 96,
+                    "tag": "SalesLineCommentLine",
+                    "type": "text",
+                    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~]INVENTORYSTATUS",
+                    "defaultValue": "",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
