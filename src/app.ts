@@ -4,7 +4,7 @@ import chokidar from "chokidar";
 import fs from 'fs';
 import * as path from "path";
 import { parseXmlFile } from './readXml';
-import bodyParser from "body-parser";
+import bodyParser, { json } from "body-parser";
 
 
 const app = express();
@@ -19,7 +19,7 @@ const corsOptions = {
 };
 
 // Apply CORS globally for all routes with the given options
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
 	res.render('home');
@@ -27,25 +27,32 @@ app.get('/', (req, res) => {
 
 app.get('/api/get-json', (req, res) => {
 	try {
-		const filePath = path.join(__dirname, 'templates/inbount.json');
+		const { type } = req.query;
+		console.log("Type", type);
+
+		const filePath = path.join(__dirname, 'templates/' + type + '.json');
+		console.log("File Path", filePath);
+
 		// Read the file synchronously
 		const data = fs.readFileSync(filePath, 'utf8');
-		
+
 		// Parse the JSON data
 		const jsonData = JSON.parse(data);
 		res.json(jsonData);
 		console.log('JSON Data:', jsonData);
-	  } catch (err) {
+	} catch (err) {
 		console.error('Error reading or parsing the file:', err);
-	  }
+	}
 });
 
 // POST API to save JSON data into a file
 app.post('/save-data', (req, res) => {
 	console.log(req.body.type, '0000000');
 	const jsonData = req.body.payload; // The incoming JSON data
-	const filePath = path.join(__dirname, 'templates/inbount.json');
-	
+	const type = req.body.type;
+
+	const filePath = path.join(__dirname, 'templates/' + type + '.json');
+
 	// Write the updated data to the file
 	fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
 		if (writeErr) {
