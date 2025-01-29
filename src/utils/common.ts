@@ -130,3 +130,10 @@ export const getSkuDatalevel = async DATA => {
     return datalevel;
 }
 
+export const getXmlType = (type: string) => {
+	const types = {
+		inbount: 'inbount',
+		outbount: 'outbount'
+	}
+	return types[type];
+}
