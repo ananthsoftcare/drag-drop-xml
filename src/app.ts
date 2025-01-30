@@ -26,11 +26,6 @@ app.get('/', (req, res) => {
 	res.render('home');
 });
 
-const types = {
-	inbount: 'inbount',
-	outbount: 'outbount'
-}
-
 app.get('/api/get-json', (req: any, res) => {
 	try {
 		const { query: { type }} = req;

@@ -1,8 +1,7 @@
 import fs from "fs-extra";
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { MessageType } from "../interface/messageTypeEnum";
-import { processInbountInt } from "./xmlInbountintUtilities";
-import { processOutbountInt } from "./xmlOutbountintUtilities";
+import { processXmlTemplate } from "./xmlBountintUtilities";
 import { processSkuInt } from "./xmlSkuintUtilities";
 import { getFileName, removeFile } from "./fileUtilities";
 
@@ -17,12 +16,12 @@ export const processXml = async (filePath: string) => {
 			let data;
 			switch (messageType) {
 				case MessageType.INBOUNDINT:
-					data = await processInbountInt(json);
-					// store to database					
-					createInboudXML(data, filePath);
+					data = await processXmlTemplate('inbound', json);
+					createXML(data, filePath);
 					break;
 				case MessageType.OUTBOUNDINT:
-					data = await processOutbountInt(json);
+					data = await processXmlTemplate('outbound', json);
+					createXML(data, filePath);
 					break;
 				case MessageType.SKUINT:
 					data = await processSkuInt(json);
@@ -38,7 +37,7 @@ export const processXml = async (filePath: string) => {
 	}
 }
 
-const createInboudXML = (data, filePath) => {
+const createXML = (data, filePath) => {
 	const builder = new XMLBuilder({
 		arrayNodeName: "NETLOGMESSAGE",
 		//oneListGroup: true
