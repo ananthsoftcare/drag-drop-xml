@@ -7,7 +7,6 @@ import { parseXmlFile } from './readXml';
 import bodyParser from "body-parser";
 import { getXmlType } from './utils/common';
 
-
 const app = express();
 app.use(bodyParser.json());
 const port = 4001;
@@ -20,7 +19,7 @@ const corsOptions = {
 };
 
 // Apply CORS globally for all routes with the given options
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
 	res.render('home');
@@ -33,7 +32,7 @@ const types = {
 
 app.get('/api/get-json', (req: any, res) => {
 	try {
-		const { query: { type }} = req;
+		const { query: { type } } = req;
 		const filetype = getXmlType(type);
 		const filePath = path.join(__dirname, `templates/${filetype}.json`);
 		// Read the file synchronously
@@ -41,17 +40,18 @@ app.get('/api/get-json', (req: any, res) => {
 		// Parse the JSON data
 		const jsonData = JSON.parse(data);
 		res.json(jsonData);
-	  } catch (err) {
+	} catch (err) {
 		console.error('Error reading or parsing the file:', err);
-	  }
+	}
 });
 
 // POST API to save JSON data into a file
 app.post('/save-data', (req, res) => {
 	const jsonData = req.body.payload; // The incoming JSON data
+
 	const filetype = getXmlType(req.body.type);
 	const filePath = path.join(__dirname, `templates/${filetype}.json`);
-	
+
 	// Write the updated data to the file
 	fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
 		if (writeErr) {
