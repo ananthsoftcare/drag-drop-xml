@@ -9,7 +9,6 @@ function convert(json, bountData, loopKey = '') {
         if (!children || children.length === 0) {
 			if(matchKey.includes('[~]')) {
                 const matchKeyArr = matchKey.replace('~', loopKey);
-                console.log(matchKey, matchKeyArr, '3333333')
                 output[tag] = getArrVal(matchKeyArr, bountData);
             } else {
 				output[tag] = matchKey ? getMatchingValue(item, bountData) : defaultValue;
@@ -66,9 +65,7 @@ const getArrVal = (tag, bountData) => {
             const index = parseInt(arrayMatch[2], 10);  // The index value
             o = o[arrayName][index];  // Access the array and the item at the given index
         } else {
-            console.log(o, i, '00000')
             // If it's not an array, simply access the property
-            if(o[i])
             o = o[i];
         }
     
