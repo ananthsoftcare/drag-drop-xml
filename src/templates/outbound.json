@@ -456,7 +456,7 @@
                 "id": 60,
                 "tag": "EDILineNo",
                 "type": "text",
-                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].ORDERLINE",
+                "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2.[~].ORDERLINE",
                 "defaultValue": ""
               },
               {
