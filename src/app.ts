@@ -29,6 +29,9 @@ app.get('/api/get-json', (req: any, res) => {
 	try {
 		const { query: { type } } = req;
 		const filetype = getXmlType(type);
+		if(!filetype) {
+			throw new Error("Invalid file type");			
+		}
 		const filePath = path.join(__dirname, `templates/${filetype}.json`);
 		// Read the file synchronously
 		const data = fs.readFileSync(filePath, 'utf8');
@@ -37,23 +40,38 @@ app.get('/api/get-json', (req: any, res) => {
 		res.json(jsonData);
 	} catch (err) {
 		console.error('Error reading or parsing the file:', err);
+		res.status(500).json({
+			success: false,
+			message: err.message
+		});
 	}
 });
 
 // POST API to save JSON data into a file
 app.post('/save-data', (req, res) => {
-	const jsonData = req.body.payload; // The incoming JSON data
+	try {
+		const jsonData = req.body.payload; // The incoming JSON data
 
-	const filetype = getXmlType(req.body.type);
-	const filePath = path.join(__dirname, `templates/${filetype}.json`);
-
-	// Write the updated data to the file
-	fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
-		if (writeErr) {
-			return res.status(500).json({ message: 'Error saving data', error: writeErr });
+		const filetype = getXmlType(req.body.type);
+		if(!filetype) {
+			throw new Error("Invalid file type");			
 		}
-		res.status(200).json({ message: 'Data updated successfully' });
-	});
+		const filePath = path.join(__dirname, `templates/${filetype}.json`);
+
+		// Write the updated data to the file
+		fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
+			if (writeErr) {
+				return res.status(500).json({ message: 'Error saving data', error: writeErr });
+			}
+			res.status(200).json({ message: 'Data updated successfully' });
+		});
+	} catch (err) {
+		console.error('Error saving data:', err);
+		res.status(500).json({
+			success: false,
+			message: err.message
+		});
+	}
 });
 
 const source_path = `E:\\inbounce-outbounce`;

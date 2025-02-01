@@ -66,7 +66,7 @@ const getArrVal = (tag, bountData) => {
             o = o[arrayName][index];  // Access the array and the item at the given index
         } else {
             // If it's not an array, simply access the property
-            o = o[i];
+            o = o?.[i];
         }
     
         return o;
