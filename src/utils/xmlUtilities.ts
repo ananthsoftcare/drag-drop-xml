@@ -4,6 +4,7 @@ import { MessageType } from "../interface/messageTypeEnum";
 import { processXmlTemplate } from "./xmlBountintUtilities";
 import { processSkuInt } from "./xmlSkuintUtilities";
 import { getFileName, removeFile } from "./fileUtilities";
+import xml2js from 'xml2js';
 
 export const processXml = async (filePath: string) => {
 	try {
@@ -44,13 +45,13 @@ const createXML = (data, filePath) => {
 	});
 	const xmlContent = builder.build(data);
 	const filename = getFileName(filePath);
-	const file = 'success/'+filename.split('.')[0]+'.xml';
+	const file = 'success/' + filename.split('.')[0] + '.xml';
 
 	fs.outputFile(file, xmlContent)
 		.then(() => fs.readFile(file, 'utf8'))
 		.then(data => {
 			console.log('success') // => hello!
-			removeFile('processing/'+filename).then(() => {
+			removeFile('processing/' + filename).then(() => {
 				console.log('REMOVE SUCCESSSSSSSSSS')
 			}).catch(err => {
 				console.log(err, '+++++++')
@@ -61,3 +62,15 @@ const createXML = (data, filePath) => {
 		})
 }
 
+export const parseXmlToJson = async (xmlData) => {
+	const parser = new xml2js.Parser();
+	return new Promise((resolve, reject) => {
+		parser.parseString(xmlData, (err, result) => {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(result);
+			}
+		});
+	});
+};
