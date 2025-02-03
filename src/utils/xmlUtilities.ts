@@ -4,25 +4,27 @@ import { MessageType } from "../interface/messageTypeEnum";
 import { processXmlTemplate } from "./xmlBountintUtilities";
 import { processSkuInt } from "./xmlSkuintUtilities";
 import { getFileName, removeFile } from "./fileUtilities";
-import xml2js from 'xml2js';
 
 export const processXml = async (filePath: string) => {
 	try {
-		const xmlFile = fs.readFileSync(`${process.cwd()}${filePath}`, 'utf8');
+		const xmlFile = fs.readFileSync(`${process.cwd()}${filePath}`, { encoding: 'utf8' });
 		const parser = new XMLParser();
 		const json = parser.parse(xmlFile);
+
+		let jsonData;
 
 		if (json) {
 			const messageType = parseInt(MessageType[json.NETLOGMESSAGE?.MESSAGETYPE]);
 			let data;
 			switch (messageType) {
 				case MessageType.INBOUNDINT:
+					console.log("Processing Inbound");
 					data = await processXmlTemplate('inbound', json);
-					createXML(data, filePath);
+					jsonData = createXML(data, filePath);
 					break;
 				case MessageType.OUTBOUNDINT:
 					data = await processXmlTemplate('outbound', json);
-					createXML(data, filePath);
+					jsonData = createXML(data, filePath);
 					break;
 				case MessageType.SKUINT:
 					data = await processSkuInt(json);
@@ -33,12 +35,14 @@ export const processXml = async (filePath: string) => {
 			}
 		}
 
+		return jsonData;
+
 	} catch (error) {
 		console.log(error);
 	}
 }
 
-const createXML = (data, filePath) => {
+const createXML = async (data, filePath) => {
 	const builder = new XMLBuilder({
 		arrayNodeName: "NETLOGMESSAGE",
 		//oneListGroup: true
@@ -47,30 +51,28 @@ const createXML = (data, filePath) => {
 	const filename = getFileName(filePath);
 	const file = 'success/' + filename.split('.')[0] + '.xml';
 
-	fs.outputFile(file, xmlContent)
-		.then(() => fs.readFile(file, 'utf8'))
-		.then(data => {
-			console.log('success') // => hello!
-			removeFile('processing/' + filename).then(() => {
-				console.log('REMOVE SUCCESSSSSSSSSS')
-			}).catch(err => {
-				console.log(err, '+++++++')
-			})
-		})
-		.catch(err => {
-			console.error(err)
-		})
+	const previewData = await generatePreviewData(file, filename, xmlContent);
+	return previewData;
 }
 
-export const parseXmlToJson = async (xmlData) => {
-	const parser = new xml2js.Parser();
-	return new Promise((resolve, reject) => {
-		parser.parseString(xmlData, (err, result) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(result);
-			}
-		});
-	});
-};
+async function generatePreviewData(file, filename, xmlContent) {
+	try {
+		// Write the XML content to the file
+		await fs.outputFile(file, xmlContent);
+
+		// Read the file content
+		const data = await fs.readFile(file, 'utf8');
+
+		// Remove the temporary files after processing
+		try {
+			await fs.remove('processing/' + filename);
+			await fs.remove('uploads/' + filename);
+		} catch (err) {
+			console.error(err, 'Error Removing file');
+		}
+
+		return data;
+	} catch (err) {
+		console.error(err);
+	}
+}

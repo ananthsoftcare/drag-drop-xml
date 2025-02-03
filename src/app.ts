@@ -6,7 +6,7 @@ import * as path from "path";
 import { parseXmlFile } from './readXml';
 import bodyParser from "body-parser";
 import { getXmlType } from './utils/common';
-import { parseXmlToJson } from './utils/xmlUtilities';
+import { processXml } from './utils/xmlUtilities';
 
 const app = express();
 app.use(bodyParser.json());
@@ -58,20 +58,29 @@ app.post('/save-data', (req, res) => {
 });
 
 app.post('/upload-file', async (req, res) => {
-	const { file } = req.body.payload;
+	const { fileName, fileData } = req.body;
 
-	if (!file) {
+	if (!fileData) {
 		return res.status(400).send({ message: 'No file data provided' });
 	}
 
 	try {
-		const base64Data = file.split(',')[1];
+		const base64Data = fileData.split(',')[1];
 		const buffer = Buffer.from(base64Data, 'base64');
 
 		const xmlData = buffer.toString('utf-8');
+		let filePath = '/uploads/' + fileName.split('.')[0] + '.xml';
 
-		const jsonData = await parseXmlToJson(xmlData);
-		res.status(200).json({ message: 'Uploaded Xml File successfully', data: jsonData });
+		fs.writeFile(`${process.cwd()}${filePath}`, xmlData, async (err) => {
+			if (err) {
+				res.status(500).send({ message: 'Unable to upload file and generate preview', error: err });
+			} else {
+				const jsonData = await processXml(`${filePath}`);
+
+				console.log("XML Preview Data", jsonData);
+				res.status(200).json({ message: 'Uploaded file and xml preview generated successfully', data: jsonData });
+			}
+		});
 
 	} catch (error) {
 		console.error('Error processing the file:', error);
