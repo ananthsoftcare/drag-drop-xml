@@ -73,6 +73,7 @@ app.post('/upload-file', async (req, res) => {
 
 		fs.writeFile(`${process.cwd()}${filePath}`, xmlData, async (err) => {
 			if (err) {
+				console.log(err, `${process.cwd()}${filePath}`)
 				res.status(500).send({ message: 'Unable to upload file and generate preview', error: err });
 			} else {
 				const jsonData = await processXml(`${filePath}`);

@@ -18,7 +18,6 @@ export const processXml = async (filePath: string) => {
 			let data;
 			switch (messageType) {
 				case MessageType.INBOUNDINT:
-					console.log("Processing Inbound");
 					data = await processXmlTemplate('inbound', json);
 					jsonData = createXML(data, filePath);
 					break;
