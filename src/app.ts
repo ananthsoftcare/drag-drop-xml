@@ -6,6 +6,7 @@ import * as path from "path";
 import { parseXmlFile } from './readXml';
 import bodyParser from "body-parser";
 import { getXmlType } from './utils/common';
+import { processXml } from './utils/xmlUtilities';
 
 const app = express();
 app.use(bodyParser.json());
@@ -73,6 +74,39 @@ app.post('/save-data', (req, res) => {
 		});
 	}
 });
+
+app.post('/upload-file', async (req, res) => {
+	const { fileName, fileData } = req.body;
+
+	if (!fileData) {
+		return res.status(400).send({ message: 'No file data provided' });
+	}
+
+	try {
+		const base64Data = fileData.split(',')[1];
+		const buffer = Buffer.from(base64Data, 'base64');
+
+		const xmlData = buffer.toString('utf-8');
+		let filePath = '/uploads/' + fileName.split('.')[0] + '.xml';
+
+		fs.writeFile(`${process.cwd()}${filePath}`, xmlData, async (err) => {
+			if (err) {
+				console.log(err, `${process.cwd()}${filePath}`)
+				res.status(500).send({ message: 'Unable to upload file and generate preview', error: err });
+			} else {
+				const jsonData = await processXml(`${filePath}`);
+
+				console.log("XML Preview Data", jsonData);
+				res.status(200).json({ message: 'Uploaded file and xml preview generated successfully', data: jsonData });
+			}
+		});
+
+	} catch (error) {
+		console.error('Error processing the file:', error);
+		res.status(500).send({ message: 'Error processing the file', error: error.message });
+	}
+});
+
 
 const source_path = `E:\\inbounce-outbounce`;
 const watcher = chokidar.watch(source_path, {
