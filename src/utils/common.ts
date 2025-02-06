@@ -133,7 +133,8 @@ export const getSkuDatalevel = async DATA => {
 export const getXmlType = (type: string) => {
 	const types = {
 		inbound: 'inbound',
-		outbound: 'outbound'
+		outbound: 'outbound',
+		sku: 'skuitems'
 	}
 	return types[type];
 }

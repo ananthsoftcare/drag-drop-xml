@@ -31,7 +31,7 @@ app.get('/api/get-json', (req: any, res) => {
 		const { query: { type } } = req;
 		const filetype = getXmlType(type);
 		if(!filetype) {
-			throw new Error("Invalid file type");			
+			throw new Error("Invalid file type");
 		}
 		const filePath = path.join(__dirname, `templates/${filetype}.json`);
 		// Read the file synchronously

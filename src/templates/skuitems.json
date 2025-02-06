@@ -1,66 +1,560 @@
-{
-	"messagetype": "NETLOGMESSAGE.MESSAGETYPE",
-	"messageid": "NETLOGMESSAGE.MESSAGEID",
-	"sourceid": "NETLOGMESSAGE.SOURCEID",
-	"senttimestamp": "NETLOGMESSAGE.SENTTIMESTAMP",
-	"clientid": "NETLOGMESSAGE.CLIENTID",
-	"clientsession": "NETLOGMESSAGE.CLIENTSESSION",
-	"consignee": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.CONSIGNEE",
-	"sku": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SKU",
-	"skudesc": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SKUDESC",
-	"skushortdesc": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SKUSHORTDESC",
-	"manufacturersku": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.MANUFACTURERSKU",
-	"vendorsku": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.VENDORSKU",
-	"othersku": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.OTHERSKU",
-	"skugroup": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SKUGROUP",
-	"classname": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.CLASSNAME",
-	"status": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.STATUS",
-	"inventory": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.INVENTORY",
-	"newsku": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.NEWSKU",
-	"initialstatus": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.INITIALSTATUS",
-	"velocity": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.VELOCITY",
-	"onsitemin": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ONSITEMIN",
-	"onsitemax": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ONSITEMAX",
-	"lastcyclecount": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.LASTCYCLECOUNT",
-	"cyclecountint": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.CYCLECOUNTINT",
-	"lowlimitcount": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.LOWLIMITCOUNT",
-	"preflocation": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.PREFLOCATION",
-	"prefputregion": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.PREFPUTREGION",
-	"unitprice": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.UNITPRICE",
-	"picture": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.PICTURE",
-	"picksortorder": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.PICKSORTORDER",
-	"defaultuom": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DEFAULTUOM",
-	"editdate": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.EDITDATE",
-	"edituser": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.EDITUSER",
-	"overpickpct": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.OVERPICKPCT",
-	"overreceivepct": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.OVERRECEIVEPCT",
-	"jobtype": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.JOBTYPE",
-	"rohoscompatiable": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.RoHoSCOMPATIABLE",
-	"hsc": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.HSC",
-	"countryoforigin": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.COUNTRYOFORIGIN",
-	"weight": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.WEIGHT",
-	"height": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.HEIGHT",
-	"depth": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DEPTH",
-	"width": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.WIDTH",
-	"volume": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.VOLUME",
-	"flammable": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.FLAMMABLE",
-	"shelflife": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SHELFLIFE",
-	"attribute2": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ATTRIBUTE2",
-	"attribute3": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ATTRIBUTE3",
-	"attribute4": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ATTRIBUTE4",
-	"currency": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.CURRENCY",
-	"exported": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.EXPORTED",
-	"datalevel2": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2",
-	"data2": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2",
-	"uom": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].UOM",
-	"eanupc": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].EANUPC",
-	"grossweight": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].GROSSWEIGHT",
-	"netweight": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].NETWEIGHT",
-	"length": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].LENGTH",
-	"loweruom": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].LOWERUOM",
-	"unitspermeasure": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].UNITSPERMEASURE",
-	"unitsperlowestuom": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].UNITSPERLOWESTUOM",
-	"shippable": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2.[~].SHIPPABLE",
-	"editdate_data2": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].EDITDATE",
-	"edituser_data2": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].EDITUSER"
-}
+[
+  {
+    "id": 0,
+    "tag": "messagetype",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGETYPE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 1,
+    "tag": "messageid",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGEID",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 2,
+    "tag": "sourceid",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.SOURCEID",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 3,
+    "tag": "senttimestamp",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.SENTTIMESTAMP",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 4,
+    "tag": "clientid",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.CLIENTID",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 5,
+    "tag": "clientsession",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.CLIENTSESSION",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 6,
+    "tag": "consignee",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.CONSIGNEE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 7,
+    "tag": "sku",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SKU",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 8,
+    "tag": "skudesc",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SKUDESC",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 9,
+    "tag": "skushortdesc",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SKUSHORTDESC",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 10,
+    "tag": "manufacturersku",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.MANUFACTURERSKU",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 11,
+    "tag": "vendorsku",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.VENDORSKU",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 12,
+    "tag": "othersku",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.OTHERSKU",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 13,
+    "tag": "skugroup",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SKUGROUP",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 14,
+    "tag": "classname",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.CLASSNAME",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 15,
+    "tag": "status",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.STATUS",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 16,
+    "tag": "inventory",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.INVENTORY",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 17,
+    "tag": "newsku",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.NEWSKU",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 18,
+    "tag": "initialstatus",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.INITIALSTATUS",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 19,
+    "tag": "velocity",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.VELOCITY",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 20,
+    "tag": "onsitemin",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ONSITEMIN",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 21,
+    "tag": "onsitemax",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ONSITEMAX",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 22,
+    "tag": "lastcyclecount",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.LASTCYCLECOUNT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 23,
+    "tag": "cyclecountint",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.CYCLECOUNTINT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 24,
+    "tag": "lowlimitcount",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.LOWLIMITCOUNT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 25,
+    "tag": "preflocation",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.PREFLOCATION",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 26,
+    "tag": "prefputregion",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.PREFPUTREGION",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 27,
+    "tag": "unitprice",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.UNITPRICE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 28,
+    "tag": "picture",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.PICTURE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 29,
+    "tag": "picksortorder",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.PICKSORTORDER",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 30,
+    "tag": "defaultuom",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DEFAULTUOM",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 31,
+    "tag": "editdate",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.EDITDATE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 32,
+    "tag": "edituser",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.EDITUSER",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 33,
+    "tag": "overpickpct",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.OVERPICKPCT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 34,
+    "tag": "overreceivepct",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.OVERRECEIVEPCT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 35,
+    "tag": "jobtype",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.JOBTYPE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 36,
+    "tag": "rohoscompatiable",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.RoHoSCOMPATIABLE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 37,
+    "tag": "hsc",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.HSC",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 38,
+    "tag": "countryoforigin",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.COUNTRYOFORIGIN",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 39,
+    "tag": "weight",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.WEIGHT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 40,
+    "tag": "height",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.HEIGHT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 41,
+    "tag": "depth",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DEPTH",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 42,
+    "tag": "width",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.WIDTH",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 43,
+    "tag": "volume",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.VOLUME",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 44,
+    "tag": "flammable",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.FLAMMABLE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 45,
+    "tag": "shelflife",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.SHELFLIFE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 46,
+    "tag": "attribute2",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ATTRIBUTE2",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 47,
+    "tag": "attribute3",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ATTRIBUTE3",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 48,
+    "tag": "attribute4",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.ATTRIBUTE4",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 49,
+    "tag": "currency",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.CURRENCY",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 50,
+    "tag": "exported",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.EXPORTED",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 53,
+    "tag": "uom",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].UOM",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 54,
+    "tag": "eanupc",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].EANUPC",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 55,
+    "tag": "grossweight",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].GROSSWEIGHT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 56,
+    "tag": "netweight",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].NETWEIGHT",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 57,
+    "tag": "length",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].LENGTH",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 58,
+    "tag": "loweruom",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].LOWERUOM",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 59,
+    "tag": "unitspermeasure",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].UNITSPERMEASURE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 60,
+    "tag": "unitsperlowestuom",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].UNITSPERLOWESTUOM",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 61,
+    "tag": "shippable",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].SHIPPABLE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 62,
+    "tag": "editdate_data2",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].EDITDATE",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  },
+  {
+    "id": 63,
+    "tag": "edituser_data2",
+    "type": "text",
+    "matchKey": "NETLOGMESSAGE.MESSAGE.HEADER.DATA.DATALEVEL2.DATA2[~].EDITUSER",
+    "defaultValue": "",
+    "secondaryMatchKey": "",
+    "children": []
+  }
+]

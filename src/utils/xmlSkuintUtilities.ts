@@ -12,16 +12,15 @@ const convertToCsv = (skuInputData) => {
 	let result = [];
 	dataLevel2.map((d2, i) => {
 		let tempData: any = {};
-		for (let key in skuTemplateJson) {
-			if (skuTemplateJson.hasOwnProperty(key)) {
-			  if(skuTemplateJson[key].includes('[~]')) {
-				const matchKeyArr = skuTemplateJson[key].replace('~', i);
-				tempData[key] = getArrVal(matchKeyArr, skuInputData);
-			  } else {
-				tempData[key] = skuTemplateJson[key].split('.').reduce((o, i) => o[i], skuInputData);
-			  }
+		skuTemplateJson.forEach(sku => {
+			const { tag, matchKey } = sku;
+			if(matchKey.includes('[~]')) {
+				const matchKeyStr = matchKey.replace('~', i);
+				tempData[tag] = getArrVal(matchKeyStr, skuInputData);
+			} else {
+				tempData[tag] = matchKey.split('.').reduce((o, i) => o[i], skuInputData);
 			}
-		}
+		});
 		result.push(tempData);
 	});   
 
