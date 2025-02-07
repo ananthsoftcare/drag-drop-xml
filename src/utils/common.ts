@@ -134,7 +134,9 @@ export const getXmlType = (type: string) => {
 	const types = {
 		inbound: 'inbound',
 		outbound: 'outbound',
-		sku: 'skuitems'
+		sku: 'skuitems',
+		warehouse: 'warehouse',
+		packingslip: 'packingslip'
 	}
 	return types[type];
 }
