@@ -26,7 +26,8 @@ export const processXml = async (filePath: string) => {
 					jsonData = createXML(data, filePath);
 					break;
 				case MessageType.SKUINT:
-					data = await processSkuInt(json);
+					const filename = getFileName(filePath);
+					data = await processSkuInt(json, filename);
 					break;
 
 				default:
@@ -37,21 +38,24 @@ export const processXml = async (filePath: string) => {
 		return jsonData;
 
 	} catch (error) {
-		console.log(error);
+		console.log('ERROR processXml ', error);
 	}
 }
 
 const createXML = async (data, filePath) => {
-	const builder = new XMLBuilder({
-		arrayNodeName: "NETLOGMESSAGE",
-		//oneListGroup: true
-	});
-	const xmlContent = builder.build(data);
-	const filename = getFileName(filePath);
-	const file = 'success/' + filename.split('.')[0] + '.xml';
-
-	const previewData = await generatePreviewData(file, filename, xmlContent);
-	return previewData;
+	try {
+		const builder = new XMLBuilder({
+			arrayNodeName: "NETLOGMESSAGE",
+			//oneListGroup: true
+		});
+		const xmlContent = builder.build(data);
+		const filename = getFileName(filePath);
+		const file = 'success/' + filename.split('.')[0] + '.xml';
+		const previewData = await generatePreviewData(file, filename, xmlContent);
+		return previewData;
+	} catch (err) {
+		console.error('ERROR createXML ', err);
+	}
 }
 
 async function generatePreviewData(file, filename, xmlContent) {

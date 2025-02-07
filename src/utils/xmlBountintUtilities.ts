@@ -75,9 +75,13 @@ const getArrVal = (tag, bountData) => {
 }
 
 export const processXmlTemplate = async (type: string, xmlData: any) => {
-	const jsonPath = path.join(__dirname, `../templates/${type}.json`);
-	const filedata = fs.readFileSync(jsonPath, 'utf-8');
-	const bountData = JSON.parse(filedata);
-	const output = convert(bountData, xmlData);
-	return output;
+    try {
+        const jsonPath = path.join(__dirname, `../templates/${type}.json`);
+        const filedata = fs.readFileSync(jsonPath, 'utf-8');
+        const bountData = JSON.parse(filedata);
+        const output = convert(bountData, xmlData);
+        return output;
+    } catch (error) {
+        console.log(`ERROR ===> processXmlTemplate `, type)
+    }
 }

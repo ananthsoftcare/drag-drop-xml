@@ -1,5 +1,5 @@
 
-import fs from 'fs';
+import fs from "fs-extra";
 import * as path from "path";
 import { ISkuIntXML } from "../interface/skuint";
 import { saveCsv } from './csvUtilities';
@@ -45,7 +45,13 @@ const getArrVal = (tag, bountData) => {
     return res;
 }
 
-export const processSkuInt = async (data: ISkuIntXML) => {
-	const output = convertToCsv(data);
-	saveCsv('output.csv', output);
+export const processSkuInt = async (data: ISkuIntXML, filename: string) => {
+	try {		
+		const output = convertToCsv(data);
+		await saveCsv('output.csv', output);
+		await fs.remove('processing/' + filename);
+	} catch (error) {
+		await fs.remove('processing/' + filename);
+		console.log('ERROR processSkuInt - > ',error)
+	}
 }

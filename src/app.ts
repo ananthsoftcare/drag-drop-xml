@@ -117,8 +117,8 @@ const watcher = chokidar.watch(source_path, {
 
 watcher
 	.on('add', path => parseXmlFile(path))
-	.on('change', path => console.log(`File ${path} has been changed`))
-	.on('unlink', path => console.log(`File ${path} has been removed`))
+	// .on('change', path => console.log(`File ${path} has been changed`))
+	// .on('unlink', path => console.log(`File ${path} has been removed`))
 	.on('error', error => console.log(`Watcher error: ${error}`));
 
 app.listen(port, () => {

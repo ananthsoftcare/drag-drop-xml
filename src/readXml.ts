@@ -11,8 +11,8 @@ export async function parseXmlFile(src: string) {
 			throw new Error(`Invalid File Extension : ${fileExtension}. only xml files are allowed`);
 		}
 
-		await removeFile('processing/');
-		await removeFile('original/');
+		//await removeFile(`original/${filename}`);
+		//await removeFile(`processing/${filename}`);
 
 		await copyFile(src, `original/${filename}`);
 		await copyFile(src, `processing/${filename}`).then(() => {
@@ -20,8 +20,9 @@ export async function parseXmlFile(src: string) {
 		});
 
 	} catch (err) {
+		await copyFile(src, `failiur/${filename}`);
 		await removeFile(`original/${filename}`);
 		await removeFile(`processing/${filename}`);
-		console.error(err)
+		console.error('ERROR parseXmlFile ', err)
 	}
 }
