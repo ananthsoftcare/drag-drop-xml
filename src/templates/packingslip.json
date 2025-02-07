@@ -1,0 +1,172 @@
+[
+  {
+    "id": 21,
+    "tag": "HEADER",
+    "type": "tag",
+    "matchKey": "",
+    "defaultValue": "",
+    "children": [
+      {
+        "id": 0,
+        "tag": "TYPE",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": "Packing Slip Ship"
+      },
+      {
+        "id": 1,
+        "tag": "STATUS",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": "Waiting for sync"
+      },
+      {
+        "id": 2,
+        "tag": "WMSNUM",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": ""
+      },
+      {
+        "id": 3,
+        "tag": "PSNUM",
+        "type": "text",
+        "matchKey": "purchaseorderno",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 4,
+        "tag": "CURDATE",
+        "type": "text",
+        "matchKey": "shipdate",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 5,
+        "tag": "BOX",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": ""
+      },
+      {
+        "id": 6,
+        "tag": "FROMWARHSNAME",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": "SEL-FG"
+      },
+      {
+        "id": 7,
+        "tag": "CUSTNAME",
+        "type": "text",
+        "matchKey": "tp_id",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 8,
+        "tag": "STCODE",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": ""
+      },
+      {
+        "id": 9,
+        "tag": "WEIGHT",
+        "type": "text",
+        "matchKey": "order_wt",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 10,
+        "tag": "COST",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": ""
+      },
+      {
+        "id": 11,
+        "tag": "CURCODE",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": "USD"
+      },
+      {
+        "id": 12,
+        "tag": "SHIPPERNAME",
+        "type": "text",
+        "matchKey": "cususer1",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 13,
+        "tag": "AIRWAYBILL",
+        "type": "text",
+        "matchKey": "cususer4",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 20,
+        "tag": "PS",
+        "type": "tag",
+        "matchKey": "",
+        "defaultValue": "",
+        "children": [
+          {
+            "id": 14,
+            "tag": "PSLINE",
+            "type": "text",
+            "matchKey": "linuser3",
+            "defaultValue": "",
+            "secondaryMatchKey": ""
+          },
+          {
+            "id": 15,
+            "tag": "PARTNAME",
+            "type": "text",
+            "matchKey": "cusitemid",
+            "defaultValue": "",
+            "secondaryMatchKey": ""
+          },
+          {
+            "id": 16,
+            "tag": "QNT",
+            "type": "text",
+            "matchKey": "quantity",
+            "defaultValue": "",
+            "secondaryMatchKey": ""
+          },
+          {
+            "id": 19,
+            "tag": "SERN",
+            "type": "tag",
+            "matchKey": "",
+            "defaultValue": "",
+            "children": [
+              {
+                "id": 17,
+                "tag": "SERNUM",
+                "type": "text",
+                "matchKey": "linuser5",
+                "defaultValue": "",
+                "secondaryMatchKey": ""
+              },
+              {
+                "id": 18,
+                "tag": "MASTERCARTON",
+                "type": "text",
+                "matchKey": "",
+                "defaultValue": ""
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

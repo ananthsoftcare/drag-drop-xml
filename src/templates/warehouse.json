@@ -1,0 +1,96 @@
+[
+  {
+    "id": 11,
+    "tag": "HEADER",
+    "type": "tag",
+    "matchKey": "orderno",
+    "defaultValue": "",
+    "children": [
+      {
+        "id": 0,
+        "tag": "TYPE",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": "Warehouse transfer"
+      },
+      {
+        "id": 1,
+        "tag": "STATUS",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": "Waiting for sync"
+      },
+      {
+        "id": 2,
+        "tag": "BOOKNUM",
+        "type": "text",
+        "matchKey": "voucher",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 3,
+        "tag": "WMSNUM",
+        "type": "text",
+        "matchKey": "orderno",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 4,
+        "tag": "CURDATE",
+        "type": "text",
+        "matchKey": "voucherdate",
+        "defaultValue": "",
+        "secondaryMatchKey": ""
+      },
+      {
+        "id": 5,
+        "tag": "FROMWARHSNAME",
+        "type": "text",
+        "matchKey": "",
+        "defaultValue": "ITBU"
+      },
+      {
+        "id": 6,
+        "tag": "TOWARHSNAME",
+        "type": "text",
+        "matchKey": "voucherdate",
+        "defaultValue": "FGBU"
+      },
+      {
+        "id": 10,
+        "tag": "LINE",
+        "type": "tag",
+        "matchKey": "",
+        "defaultValue": "",
+        "children": [
+          {
+            "id": 7,
+            "tag": "PARTSTATUS",
+            "type": "text",
+            "matchKey": "linuser3",
+            "defaultValue": "VARIANT",
+            "secondaryMatchKey": ""
+          },
+          {
+            "id": 8,
+            "tag": "PARTNAME",
+            "type": "text",
+            "matchKey": "itemid",
+            "defaultValue": "",
+            "secondaryMatchKey": ""
+          },
+          {
+            "id": 9,
+            "tag": "QNT",
+            "type": "text",
+            "matchKey": "qtyrec",
+            "defaultValue": "",
+            "secondaryMatchKey": ""
+          }
+        ]
+      }
+    ]
+  }
+]
