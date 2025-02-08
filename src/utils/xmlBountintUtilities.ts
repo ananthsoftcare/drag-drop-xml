@@ -1,23 +1,24 @@
 
 import fs from 'fs';
 import * as path from "path";
+import { config } from '../../config';
 
 function convert(json, bountData, loopKey = '') {
     const output = {};
     json.forEach(item => {
         const { tag, children, matchKey, defaultValue, type } = item;
         if (!children || children.length === 0) {
-			if(matchKey.includes('[~]')) {
+            if (matchKey.includes('[~]')) {
                 const matchKeyArr = matchKey.replace('~', loopKey);
                 output[tag] = getArrVal(matchKeyArr, bountData);
             } else {
-				output[tag] = matchKey ? getMatchingValue(item, bountData) : defaultValue;
-			}
+                output[tag] = matchKey ? getMatchingValue(item, bountData) : defaultValue;
+            }
         } else {
-            if(type == 'loop') {
+            if (type == 'loop') {
                 output[tag] = [];
                 const loopVal = matchKey.split('.').reduce((o, i) => o[i], bountData);
-                if(loopVal?.length > 1) {
+                if (loopVal?.length > 1) {
                     loopVal.forEach((litem, i) => {
                         output[tag][i] = convert(children, bountData, i);
                     })
@@ -33,32 +34,32 @@ function convert(json, bountData, loopKey = '') {
 
 
 const getMatchingValue = (item, bountData) => {
-	const regex = /[=,]/;
-	const { secondaryMatchKey, matchKey, defaultValue } = item;
-	let matchKeyVal = matchKey.split('.').reduce((o, i) => o[i], bountData);
-	if(regex.test(defaultValue)){
-		const commaSeparated = defaultValue.split(',');
-		let matchVal = '';
-		const result = commaSeparated.map(item => {
-			const [key, value] = item.split('=');
-			if(key?.toLowerCase() === matchKeyVal?.toLowerCase()) {
-				matchVal = value
-			}
-			return { key, value };
-		});
-		return matchVal;
-	} else if(secondaryMatchKey && !matchKeyVal) {
-		matchKeyVal = secondaryMatchKey.split('.').reduce((o, i) => o[i], bountData);
-	}
+    const regex = /[=,]/;
+    const { secondaryMatchKey, matchKey, defaultValue } = item;
+    let matchKeyVal = matchKey.split('.').reduce((o, i) => o[i], bountData);
+    if (regex.test(defaultValue)) {
+        const commaSeparated = defaultValue.split(',');
+        let matchVal = '';
+        const result = commaSeparated.map(item => {
+            const [key, value] = item.split('=');
+            if (key?.toLowerCase() === matchKeyVal?.toLowerCase()) {
+                matchVal = value
+            }
+            return { key, value };
+        });
+        return matchVal;
+    } else if (secondaryMatchKey && !matchKeyVal) {
+        matchKeyVal = secondaryMatchKey.split('.').reduce((o, i) => o[i], bountData);
+    }
 
-	return matchKeyVal
+    return matchKeyVal
 }
 
 const getArrVal = (tag, bountData) => {
     const res = tag.split('.').reduce((o, i) => {
         // Check if the current part of the path has an array index
         const arrayMatch = i.match(/(.*)\[(\d+)\]/);
-        
+
         if (arrayMatch) {
             // If it's an array index, access the array and the correct index
             const arrayName = arrayMatch[1];  // The part before the array
@@ -68,7 +69,7 @@ const getArrVal = (tag, bountData) => {
             // If it's not an array, simply access the property
             o = o?.[i];
         }
-    
+
         return o;
     }, bountData);
     return res;
@@ -76,7 +77,7 @@ const getArrVal = (tag, bountData) => {
 
 export const processXmlTemplate = async (type: string, xmlData: any) => {
     try {
-        const jsonPath = path.join(__dirname, `../templates/${type}.json`);
+        const jsonPath = path.join(__dirname, `../${config.paths.templates}${type}.json`);
         const filedata = fs.readFileSync(jsonPath, 'utf-8');
         const bountData = JSON.parse(filedata);
         const output = convert(bountData, xmlData);

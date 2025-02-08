@@ -1,3 +1,5 @@
+import { config } from "../../config";
+
 export const getInbountDatalevel = async DATA => {
 	let datalevel;
 
@@ -132,11 +134,11 @@ export const getSkuDatalevel = async DATA => {
 
 export const getXmlType = (type: string) => {
 	const types = {
-		inbound: 'inbound',
-		outbound: 'outbound',
-		sku: 'skuitems',
-		warehouse: 'warehouse',
-		packingslip: 'packingslip'
+		inbound: config.xmlType.INBOUND,
+		outbound: config.xmlType.OUTBOUND,
+		sku: config.xmlType.SKU,
+		warehouse: config.xmlType.WAREHOUSE,
+		packingslip: config.xmlType.PACKINGSLIP
 	}
 	return types[type];
 }
