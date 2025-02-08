@@ -8,15 +8,17 @@ import bodyParser from "body-parser";
 import { getXmlType } from './utils/common';
 import { processXml } from './utils/xmlUtilities';
 
+import { config } from "../config";
+
 const app = express();
 app.use(bodyParser.json());
 const port = 4001;
 
 // CORS options for specific origin (e.g., React app at localhost:3001)
 const corsOptions = {
-	origin: 'http://localhost:3000', // Allow only requests from this domain (React app)
-	methods: ['GET', 'POST'],        // Allow only GET and POST methods
-	allowedHeaders: ['Content-Type'], // Allow only Content-Type header
+	origin: config.cors.origin, // Allow only requests from this domain (React app)
+	methods: config.cors.methods,        // Allow only GET and POST methods
+	allowedHeaders: config.cors.headers, // Allow only Content-Type header
 };
 
 // Apply CORS globally for all routes with the given options
@@ -30,10 +32,11 @@ app.get('/api/get-json', (req: any, res) => {
 	try {
 		const { query: { type } } = req;
 		const filetype = getXmlType(type);
-		if(!filetype) {
+		if (!filetype) {
 			throw new Error("Invalid file type");
 		}
-		const filePath = path.join(__dirname, `templates/${filetype}.json`);
+		const filePath = path.join(__dirname, config.paths.templates, `${filetype}.json`);
+
 		// Read the file synchronously
 		const data = fs.readFileSync(filePath, 'utf8');
 		// Parse the JSON data
@@ -54,10 +57,10 @@ app.post('/save-data', (req, res) => {
 		const jsonData = req.body.payload; // The incoming JSON data
 
 		const filetype = getXmlType(req.body.type);
-		if(!filetype) {
-			throw new Error("Invalid file type");			
+		if (!filetype) {
+			throw new Error("Invalid file type");
 		}
-		const filePath = path.join(__dirname, `templates/${filetype}.json`);
+		const filePath = path.join(__dirname, config.paths.templates, `${filetype}.json`);
 
 		// Write the updated data to the file
 		fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
@@ -87,7 +90,7 @@ app.post('/upload-file', async (req, res) => {
 		const buffer = Buffer.from(base64Data, 'base64');
 
 		const xmlData = buffer.toString('utf-8');
-		let filePath = '/uploads/' + fileName.split('.')[0] + '.xml';
+		let filePath = path.join(`/${config.paths.uploads}`, `${fileName.split(".")[0]}.xml`);
 
 		fs.writeFile(`${process.cwd()}${filePath}`, xmlData, async (err) => {
 			if (err) {
@@ -108,11 +111,11 @@ app.post('/upload-file', async (req, res) => {
 });
 
 
-const source_path = `E:\\inbounce-outbounce`;
+const source_path = config.watcher.source_path;
 const watcher = chokidar.watch(source_path, {
-	ignored: /(^|[\\/\\])\../, // ignore dotfiles
-	persistent: true,
-	ignoreInitial: true
+	ignored: config.watcher.ignored, // ignore dotfiles
+	persistent: config.watcher.persistent,
+	ignoreInitial: config.watcher.ignoreInitial
 });
 
 watcher
