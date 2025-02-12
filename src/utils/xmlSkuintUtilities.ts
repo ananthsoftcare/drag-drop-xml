@@ -15,11 +15,12 @@ const convertToCsv = (skuInputData) => {
 		let tempData: any = {};
 		skuTemplateJson.forEach(sku => {
 			const { tag, matchKey } = sku;
+			let tagName = tag.toUpperCase();
 			if (matchKey.includes('[~]')) {
 				const matchKeyStr = matchKey.replace('~', i);
-				tempData[tag] = getArrVal(matchKeyStr, skuInputData);
+				tempData[tagName] = getArrVal(matchKeyStr, skuInputData);
 			} else {
-				tempData[tag] = matchKey.split('.').reduce((o, i) => o[i], skuInputData);
+				tempData[tagName] = matchKey.split('.').reduce((o, i) => o[i], skuInputData);
 			}
 		});
 		result.push(tempData);
