@@ -31,7 +31,7 @@ export const processCsv = async (filePath) => {
 
 export const processCsvToXml = (type, jsonData) => {
   const templatePath = path.join(__dirname, `../${config.paths.templates}${type}.json`);
-  const outputFilePath = path.join(`${config.paths.success}`, `/csv_to_xml_output.xml`);
+  const outputFilePath = path.join(`${config.paths.success}`, `/${type}.xml`);
 
   try {
     const templateData = JSON.parse(fs.readFileSync(templatePath, 'utf8'));
