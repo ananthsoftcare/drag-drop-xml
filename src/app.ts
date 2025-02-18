@@ -7,7 +7,7 @@ import { parseXmlFile } from './readXml';
 import bodyParser from "body-parser";
 import { getXmlType } from './utils/common';
 import { processXml } from './utils/xmlUtilities';
-
+import { parseCsvFile } from './readCsv';
 import { config } from "../config";
 
 const app = express();
@@ -118,11 +118,15 @@ const watcher = chokidar.watch(source_path, {
 	ignoreInitial: config.watcher.ignoreInitial
 });
 
-watcher
-	.on('add', path => parseXmlFile(path))
-	// .on('change', path => console.log(`File ${path} has been changed`))
-	// .on('unlink', path => console.log(`File ${path} has been removed`))
-	.on('error', error => console.log(`Watcher error: ${error}`));
+watcher.on('add', path => {
+	parseXmlFile(path);
+	parseCsvFile(path);
+});
+
+watcher.on('error', error => console.log(`Watcher error: ${error}`));
+
+// .on('change', path => console.log(`File ${path} has been changed`))
+// .on('unlink', path => console.log(`File ${path} has been removed`))
 
 app.listen(port, () => {
 	return console.log(`Express is listening at http://localhost:${port}`);
