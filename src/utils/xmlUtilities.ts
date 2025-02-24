@@ -6,6 +6,7 @@ import { processSkuInt } from "./xmlSkuintUtilities";
 import { getFileName, removeFile } from "./fileUtilities";
 
 import { config } from '../../config';
+import { generateFileName } from "./common";
 
 export const processXml = async (filePath: string) => {
 	try {
@@ -21,11 +22,29 @@ export const processXml = async (filePath: string) => {
 			switch (messageType) {
 				case MessageType.INBOUNDINT:
 					data = await processXmlTemplate(config.xmlType.INBOUND, json);
-					jsonData = createXML(data, filePath);
+					jsonData = createXML(
+						data,
+						filePath,
+						//Output FileName
+						generateFileName(
+							config.xmlType.INBOUND,
+							json.NETLOGMESSAGE?.MESSAGEID,
+							json.NETLOGMESSAGE?.MESSAGE?.HEADER?.DATA?.ORDERID
+						)
+					);
 					break;
 				case MessageType.OUTBOUNDINT:
 					data = await processXmlTemplate(config.xmlType.OUTBOUND, json);
-					jsonData = createXML(data, filePath);
+					jsonData = createXML(
+						data,
+						filePath,
+						//Output FileName
+						generateFileName(
+							config.xmlType.OUTBOUND,
+							json.NETLOGMESSAGE?.MESSAGEID,
+							json.NETLOGMESSAGE?.MESSAGE?.HEADER?.DATA?.ORDERID
+						)
+					);
 					break;
 				case MessageType.SKUINT:
 					const filename = getFileName(filePath);
@@ -44,7 +63,7 @@ export const processXml = async (filePath: string) => {
 	}
 }
 
-const createXML = async (data, filePath) => {
+const createXML = async (data, filePath, outputfilename) => {
 	try {
 		const builder = new XMLBuilder({
 			// arrayNodeName: "NETLOGMESSAGE",
@@ -54,7 +73,7 @@ const createXML = async (data, filePath) => {
 		const xmlContent = builder.build(data);
 		const filename = getFileName(filePath);
 		// const file = 'success/' + filename.split('.')[0] + '.xml';
-		const file = `${config.paths.success}${filename.split(".")[0]}.xml`;
+		const file = `${config.paths.success}${outputfilename}.xml`;
 		const previewData = await generatePreviewData(file, filename, xmlContent);
 		return previewData;
 	} catch (err) {

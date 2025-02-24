@@ -61,7 +61,7 @@
       {
         "id": 10,
         "tag": "LINE",
-        "type": "tag",
+        "type": "loop",
         "matchKey": "",
         "defaultValue": "",
         "children": [

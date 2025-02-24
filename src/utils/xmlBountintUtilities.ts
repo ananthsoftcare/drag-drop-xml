@@ -3,7 +3,7 @@ import fs from 'fs';
 import * as path from "path";
 import { config } from '../../config';
 
-function convert(json, bountData, loopKey = '') {
+function convert(json, bountData, loopKey = 0) {
     const output = {};
     json.forEach(item => {
         const { tag, children, matchKey, defaultValue, type } = item;
@@ -17,11 +17,14 @@ function convert(json, bountData, loopKey = '') {
         } else {
             if (type == 'loop') {
                 output[tag] = [];
-                const loopVal = matchKey.split('.').reduce((o, i) => o[i], bountData);
-                if (loopVal?.length > 1) {
-                    loopVal.forEach((litem, i) => {
-                        output[tag][i] = convert(children, bountData, i);
-                    })
+                const loopVal = matchKey.split('.').reduce((o, i) => o[i], bountData);                
+                if (loopVal) {
+                    const loopValArr = Array.isArray(loopVal) ? loopVal : [loopVal];
+                    if(loopValArr?.length > 0) {
+                        loopValArr.forEach((litem, i) => {
+                            output[tag][i] = convert(children, bountData, i);
+                        })
+                    }
                 }
             } else {
                 output[tag] = convert(children, bountData, loopKey); // Recursively handle child elements
@@ -83,6 +86,6 @@ export const processXmlTemplate = async (type: string, xmlData: any) => {
         const output = convert(bountData, xmlData);
         return output;
     } catch (error) {
-        console.log(`ERROR ===> processXmlTemplate `, type)
+        console.log(`ERROR ===> processXmlTemplate `, error, type)
     }
 }
