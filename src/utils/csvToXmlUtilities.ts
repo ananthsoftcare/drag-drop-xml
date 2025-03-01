@@ -5,15 +5,14 @@ import { parse } from "csv-parse/sync";
 import { config } from '../../config';
 import { XMLBuilder } from 'fast-xml-parser';
 import { getXmlType } from './common';
+import { getFileName } from './fileUtilities';
 
 export const processCsv = async (filePath) => {
-  try {
-    let fileName = `${filePath.split("/")[1]}`;
-    fileName = fileName.split(".")[0];
+  try {   
+    let fileName = getFileName(filePath)?.split(".")[0];
 
     const xmlType = getXmlType(fileName);
-
-    const data = fs.readFileSync(filePath, 'utf8');
+    const data = fs.readFileSync(`${process.cwd()}${filePath}`, { encoding: 'utf8' });
 
     const records = parse(data, {
       columns: true,
@@ -36,9 +35,8 @@ export const processCsvToXml = (type, jsonData) => {
   try {
     const templateData = JSON.parse(fs.readFileSync(templatePath, 'utf8'));
     const xmlJson = convertCsvToXml(templateData, jsonData);
-
     const builder = new XMLBuilder({
-      arrayNodeName: "_DOC",
+      arrayNodeName: config.xmlOptions.arrayNodeName,
       format: true
     });
 
