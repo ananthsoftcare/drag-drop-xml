@@ -7,10 +7,11 @@ import { XMLBuilder } from 'fast-xml-parser';
 import { getXmlType } from './common';
 import { getFileName } from './fileUtilities';
 
-export const processCsv = async (filePath) => {
-  try {   
+export const processCsv = async (filePath: string) => {
+  try {
     let fileName = getFileName(filePath)?.split(".")[0];
 
+    let groupedOrders = {};
     const xmlType = getXmlType(fileName);
     const data = fs.readFileSync(`${process.cwd()}${filePath}`, { encoding: 'utf8' });
 
@@ -21,34 +22,41 @@ export const processCsv = async (filePath) => {
       relax_column_count: true
     });
 
-    processCsvToXml(xmlType, records);
+    // Group rows by orderno
+    groupedOrders = records.reduce((orders: any, row: any) => {
+      const orderId = row.orderno;
+      if (!orders[orderId]) orders[orderId] = [];
+      orders[orderId].push(row);
+      return orders;
+    }, {});
+
+    processCsvToXml(xmlType, groupedOrders);
 
   } catch (error) {
     console.error("Error processing CSV:", error);
   }
 };
 
-export const processCsvToXml = (type, jsonData) => {
-  const templatePath = path.join(__dirname, `../${config.paths.templates}${type}.json`);
-  const outputFilePath = path.join(`${config.paths.success}`, `/${type}.xml`);
+export const processCsvToXml = (type: any, groupedOrders: any) => {
+  Object.entries(groupedOrders).forEach(([orderId, lineItems]) => {
 
-  try {
+    const templatePath = path.join(__dirname, `../${config.paths.templates}${type}.json`);
+    const outputFilePath = path.join(`${config.paths.success}`, `order-${orderId}.xml`);
+
     const templateData = JSON.parse(fs.readFileSync(templatePath, 'utf8'));
-    const xmlJson = convertCsvToXml(templateData, jsonData);
+
+    const xmlJson = convertCsvToXml(templateData, lineItems);
+
     const builder = new XMLBuilder({
-      arrayNodeName: config.xmlOptions.arrayNodeName,
-      format: true
+      format: true,
+      arrayNodeName: config.xmlOptions.arrayNodeName
     });
 
     const xmlOutput = builder.build(xmlJson);
-
     fs.writeFileSync(outputFilePath, xmlOutput, 'utf8');
-    console.log("XML file successfully saved to", outputFilePath);
 
-    return xmlOutput;
-  } catch (error) {
-    console.error("Error processing XML:", error);
-  }
+    console.log(`Generated XML for order: ${orderId}`);
+  });
 };
 
 function convertCsvToXml(jsonTemplate, data, loopKey = '') {
@@ -73,3 +81,4 @@ function convertCsvToXml(jsonTemplate, data, loopKey = '') {
     return output;
   });
 }
+
