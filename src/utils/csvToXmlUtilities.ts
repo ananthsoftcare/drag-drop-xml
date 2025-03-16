@@ -3,9 +3,10 @@ import path from 'path';
 
 import { parse } from "csv-parse/sync";
 import { config } from '../../config';
-import { XMLBuilder } from 'fast-xml-parser';
+import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { getXmlType } from './common';
 import { getFileName } from './fileUtilities';
+import { generateFileName } from "./common";
 
 export const processCsv = async (filePath: string) => {
   try {
@@ -40,8 +41,14 @@ export const processCsv = async (filePath: string) => {
 export const processCsvToXml = (type: any, groupedOrders: any) => {
   Object.entries(groupedOrders).forEach(([orderId, lineItems]) => {
 
+    let customerId = null;
+
+    if (lineItems != null) {
+      customerId = lineItems[0].cusno;
+    }
+
     const templatePath = path.join(__dirname, `../${config.paths.templates}${type}.json`);
-    const outputFilePath = path.join(`${config.paths.success}`, `order-${orderId}.xml`);
+    const outputFilePath = path.join(`${config.paths.success}`, generateFileName(type, customerId, orderId));
 
     const templateData = JSON.parse(fs.readFileSync(templatePath, 'utf8'));
 
@@ -49,11 +56,14 @@ export const processCsvToXml = (type: any, groupedOrders: any) => {
 
     const builder = new XMLBuilder({
       format: true,
-      arrayNodeName: config.xmlOptions.arrayNodeName
+      arrayNodeName: config.xmlOptions.csvToXmlNodeName,
     });
 
     const xmlOutput = builder.build(xmlJson);
-    fs.writeFileSync(outputFilePath, xmlOutput, 'utf8');
+
+    const processedOutput = processXmlOutput(xmlOutput);
+
+    fs.writeFileSync(outputFilePath, processedOutput, 'utf8');
 
     console.log(`Generated XML for order: ${orderId}`);
   });
@@ -61,17 +71,29 @@ export const processCsvToXml = (type: any, groupedOrders: any) => {
 
 function convertCsvToXml(jsonTemplate, data, loopKey = '') {
   return data.map(row => {
-    const output = {};
+    let output = {};
 
     jsonTemplate.forEach(item => {
       const { tag, children, matchKey, defaultValue, type } = item;
-      const tagName = matchKey;
+      const tagName = matchKey || tag;
+
+      if (tagName === 'HEADER') {
+        if (children && children.length > 0) {
+          const childOutput = convertCsvToXml(children, [row]);
+          output = { ...output, ...childOutput[0] };
+        }
+        return;
+      }
 
       if (!children || children.length === 0) {
-        output[tagName] = row[matchKey] || defaultValue;
+        output[tagName] = row[matchKey] || row[tag] || defaultValue;
       } else {
         if (type === 'loop') {
-          output[tagName] = row[matchKey]?.map(loopRow => convertCsvToXml(children, [loopRow])) || [];
+          if (row[matchKey]) {
+            output[tag] = row[matchKey]?.map(loopRow => convertCsvToXml(children, [loopRow])) || [];
+          } else {
+            output[tag] = convertCsvToXml(children, [row]);
+          }
         } else {
           output[tagName] = convertCsvToXml(children, [row]);
         }
@@ -82,3 +104,39 @@ function convertCsvToXml(jsonTemplate, data, loopKey = '') {
   });
 }
 
+
+function processXmlOutput(xmlString) {
+
+  const parser = new XMLParser({ ignoreAttributes: false, removeNSPrefix: true });
+  const jsonData = parser.parse(`<ROOT>${xmlString}</ROOT>`);
+
+  const headers = Array.isArray(jsonData.ROOT.HEADER) ? jsonData.ROOT.HEADER : [jsonData.ROOT.HEADER];
+
+  let staticData: any = {};
+  let lineItems = [];
+
+  headers.forEach((header, index) => {
+    if (index === 0) {
+      staticData = { ...header };
+      delete staticData.LINE;
+    }
+
+    if (header.LINE) {
+      if (Array.isArray(header.LINE)) {
+        lineItems.push(...header.LINE);
+      } else {
+        lineItems.push(header.LINE);
+      }
+    }
+  });
+
+  const finalOutput = {
+    HEADER: {
+      ...staticData,
+      LINE: lineItems.length > 1 ? lineItems : lineItems[0]
+    }
+  };
+
+  const builder = new XMLBuilder({ format: true });
+  return builder.build(finalOutput);
+}

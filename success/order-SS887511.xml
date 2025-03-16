@@ -1,38 +1,54 @@
-<_DOC>
-  <>
-    <>
+<NETLOGMESSAGE>
+  <HEADER>
+    <TYPE>Packing Slip Ship</TYPE>
+    <STATUS>Waiting for sync</STATUS>
+    <WMSNUM></WMSNUM>
+    <purchaseorderno>2003994-1</purchaseorderno>
+    <shipdate>20230927</shipdate>
+    <BOX></BOX>
+    <FROMWARHSNAME>SEL-FG</FROMWARHSNAME>
+    <tp_id>CU101676</tp_id>
+    <STCODE></STCODE>
+    <order_wt>1.54</order_wt>
+    <COST></COST>
+    <CURCODE>USD</CURCODE>
+    <cususer1>FEDEX</cususer1>
+    <cususer4>987132510037341</cususer4>
+    <PS>
       <linuser3>1462162</linuser3>
       <cusitemid>TE019AS016</cusitemid>
       <quantity>1</quantity>
-      <>
+      <SERN>
         <linuser5>Z9CRY12J</linuser5>
-        <></>
-      </>
-    </>
+        <MASTERCARTON></MASTERCARTON>
+      </SERN>
+    </PS>
+  </HEADER>
+</NETLOGMESSAGE>
+<NETLOGMESSAGE>
+  <HEADER>
+    <TYPE>Packing Slip Ship</TYPE>
+    <STATUS>Waiting for sync</STATUS>
+    <WMSNUM></WMSNUM>
     <purchaseorderno>2003994-1</purchaseorderno>
     <shipdate>20230927</shipdate>
+    <BOX></BOX>
+    <FROMWARHSNAME>SEL-FG</FROMWARHSNAME>
     <tp_id>CU101676</tp_id>
+    <STCODE></STCODE>
     <order_wt>1.54</order_wt>
+    <COST></COST>
+    <CURCODE>USD</CURCODE>
     <cususer1>FEDEX</cususer1>
     <cususer4>987132510037341</cususer4>
-  </>
-</_DOC>
-<_DOC>
-  <>
-    <>
+    <PS>
       <linuser3>1462162</linuser3>
       <cusitemid>TE019AS016</cusitemid>
       <quantity>1</quantity>
-      <>
+      <SERN>
         <linuser5>Z9CRY12J</linuser5>
-        <></>
-      </>
-    </>
-    <purchaseorderno>2003994-1</purchaseorderno>
-    <shipdate>20230927</shipdate>
-    <tp_id>CU101676</tp_id>
-    <order_wt>1.54</order_wt>
-    <cususer1>FEDEX</cususer1>
-    <cususer4>987132510037341</cususer4>
-  </>
-</_DOC>
+        <MASTERCARTON></MASTERCARTON>
+      </SERN>
+    </PS>
+  </HEADER>
+</NETLOGMESSAGE>
