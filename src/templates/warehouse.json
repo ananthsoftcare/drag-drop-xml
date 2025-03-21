@@ -55,7 +55,7 @@
         "id": 6,
         "tag": "TOWARHSNAME",
         "type": "text",
-        "matchKey": "voucherdate",
+        "matchKey": "",
         "defaultValue": "FGBU"
       },
       {

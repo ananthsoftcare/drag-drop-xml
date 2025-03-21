@@ -61,7 +61,7 @@ export const processCsvToXml = (type: any, groupedOrders: any) => {
 
     const xmlOutput = builder.build(xmlJson);
 
-    const processedOutput = processXmlOutput(xmlOutput);
+    const processedOutput = processXmlOutput(type, xmlOutput);
 
     fs.writeFileSync(outputFilePath, processedOutput, 'utf8');
 
@@ -105,7 +105,7 @@ function convertCsvToXml(jsonTemplate, data, loopKey = '') {
 }
 
 
-function processXmlOutput(xmlString) {
+function processXmlOutput(type, xmlString) {
 
   const parser = new XMLParser({ ignoreAttributes: false, removeNSPrefix: true });
   const jsonData = parser.parse(`<ROOT>${xmlString}</ROOT>`);
@@ -114,28 +114,45 @@ function processXmlOutput(xmlString) {
 
   let staticData: any = {};
   let lineItems = [];
+  let psItems = [];
+  let finalOutput = {};
 
   headers.forEach((header, index) => {
     if (index === 0) {
       staticData = { ...header };
-      delete staticData.LINE;
+      type === config.xmlType.WAREHOUSE ? delete staticData.LINE : delete staticData.PS;
     }
 
-    if (header.LINE) {
+    if (type === config.xmlType.WAREHOUSE && header.LINE) {
       if (Array.isArray(header.LINE)) {
         lineItems.push(...header.LINE);
       } else {
         lineItems.push(header.LINE);
       }
+    } else if (type === config.xmlType.PACKINGSLIP && header.PS) {
+      if (Array.isArray(header.PS)) {
+        psItems.push(...header.PS);
+      } else {
+        psItems.push(header.PS);
+      }
     }
   });
 
-  const finalOutput = {
-    HEADER: {
-      ...staticData,
-      LINE: lineItems.length > 1 ? lineItems : lineItems[0]
-    }
-  };
+  if (type === config.xmlType.WAREHOUSE) {
+    finalOutput = {
+      HEADER: {
+        ...staticData,
+        LINE: lineItems.length > 1 ? lineItems : lineItems[0]
+      }
+    };
+  } else if (type === config.xmlType.PACKINGSLIP) {
+    finalOutput = {
+      HEADER: {
+        ...staticData,
+        PS: psItems.length > 1 ? psItems : psItems[0]
+      }
+    };
+  }
 
   const builder = new XMLBuilder({ format: true });
   return builder.build(finalOutput);

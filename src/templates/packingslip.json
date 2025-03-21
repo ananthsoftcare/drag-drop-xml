@@ -24,7 +24,7 @@
         "id": 2,
         "tag": "WMSNUM",
         "type": "text",
-        "matchKey": "",
+        "matchKey": "orderno",
         "defaultValue": ""
       },
       {
@@ -61,7 +61,7 @@
         "id": 7,
         "tag": "CUSTNAME",
         "type": "text",
-        "matchKey": "tp_id",
+        "matchKey": "cusno",
         "defaultValue": "",
         "secondaryMatchKey": ""
       },
@@ -76,7 +76,7 @@
         "id": 9,
         "tag": "WEIGHT",
         "type": "text",
-        "matchKey": "order_wt",
+        "matchKey": "",
         "defaultValue": "",
         "secondaryMatchKey": ""
       },
@@ -98,7 +98,7 @@
         "id": 12,
         "tag": "SHIPPERNAME",
         "type": "text",
-        "matchKey": "cususer1",
+        "matchKey": "shiptoname",
         "defaultValue": "",
         "secondaryMatchKey": ""
       },
@@ -113,7 +113,7 @@
       {
         "id": 20,
         "tag": "PS",
-        "type": "tag",
+        "type": "loop",
         "matchKey": "",
         "defaultValue": "",
         "children": [
@@ -121,7 +121,7 @@
             "id": 14,
             "tag": "PSLINE",
             "type": "text",
-            "matchKey": "linuser3",
+            "matchKey": "",
             "defaultValue": "",
             "secondaryMatchKey": ""
           },
@@ -137,14 +137,14 @@
             "id": 16,
             "tag": "QNT",
             "type": "text",
-            "matchKey": "quantity",
+            "matchKey": "qtytoship",
             "defaultValue": "",
             "secondaryMatchKey": ""
           },
           {
             "id": 19,
             "tag": "SERN",
-            "type": "tag",
+            "type": "loop",
             "matchKey": "",
             "defaultValue": "",
             "children": [
@@ -152,7 +152,7 @@
                 "id": 17,
                 "tag": "SERNUM",
                 "type": "text",
-                "matchKey": "linuser5",
+                "matchKey": "",
                 "defaultValue": "",
                 "secondaryMatchKey": ""
               },
