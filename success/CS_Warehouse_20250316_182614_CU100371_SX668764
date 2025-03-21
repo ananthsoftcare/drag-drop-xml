@@ -8,11 +8,11 @@
   <LINE>
     <linuser3>VARIANT</linuser3>
     <itemid>EA</itemid>
-    <qtyrec></qtyrec>
+    <qtyrec>4</qtyrec>
   </LINE>
   <LINE>
     <linuser3>VARIANT</linuser3>
-    <itemid>EA</itemid>
-    <qtyrec></qtyrec>
+    <itemid>TEST</itemid>
+    <qtyrec>5</qtyrec>
   </LINE>
 </HEADER>

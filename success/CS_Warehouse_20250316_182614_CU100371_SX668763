@@ -2,17 +2,17 @@
   <TYPE>Warehouse transfer</TYPE>
   <STATUS>Waiting for sync</STATUS>
   <voucher>70138333</voucher>
-  <orderno>SX668764</orderno>
+  <orderno>SX668763</orderno>
   <voucherdate>20230908</voucherdate>
   <FROMWARHSNAME>ITBU</FROMWARHSNAME>
   <LINE>
     <linuser3>VARIANT</linuser3>
     <itemid>EA</itemid>
-    <qtyrec></qtyrec>
+    <qtyrec>2</qtyrec>
   </LINE>
   <LINE>
     <linuser3>VARIANT</linuser3>
-    <itemid>EA</itemid>
-    <qtyrec></qtyrec>
+    <itemid>TEST</itemid>
+    <qtyrec>3</qtyrec>
   </LINE>
 </HEADER>

@@ -36,6 +36,7 @@ export const config = {
   },
   xmlOptions: {
     arrayNodeName: "NETLOGMESSAGE",
+    csvToXmlNodeName: "HEADER"
   },
   csv: {
     outputFileName: "output.csv",

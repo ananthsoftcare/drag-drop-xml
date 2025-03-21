@@ -1,0 +1,25 @@
+<HEADER>
+  <TYPE>Packing Slip Ship</TYPE>
+  <STATUS>Waiting for sync</STATUS>
+  <orderno>SS887511</orderno>
+  <purchaseorderno>2003994-1</purchaseorderno>
+  <shipdate>20230927</shipdate>
+  <BOX></BOX>
+  <FROMWARHSNAME>SEL-FG</FROMWARHSNAME>
+  <cusno>CU101676</cusno>
+  <STCODE></STCODE>
+  <WEIGHT></WEIGHT>
+  <COST></COST>
+  <CURCODE>USD</CURCODE>
+  <shiptoname>Jakob Hess</shiptoname>
+  <cususer4>987132510037341</cususer4>
+  <PS>
+    <PSLINE></PSLINE>
+    <cusitemid>TE019AS016</cusitemid>
+    <qtytoship>1</qtytoship>
+    <SERN>
+      <SERNUM></SERNUM>
+      <MASTERCARTON></MASTERCARTON>
+    </SERN>
+  </PS>
+</HEADER>
